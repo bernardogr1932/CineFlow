@@ -7,6 +7,8 @@ public class Sessao
     public int SalaId { get; set; }
     public DateTime DataHoraInicio { get; set; }
     public DateTime DataHoraFim { get; set; }
+    public int LotacaoAtual { get; set; }
+    public bool _Lotado;
 
 
 
@@ -17,15 +19,19 @@ public class Sessao
         SalaId = 0;
         DataHoraInicio = DateTime.MinValue;
         DataHoraFim = DateTime.MinValue;
+        LotacaoAtual = 0;
+        _Lotado = false;
     }
 
-    public Sessao(int id, int filmeid, int salaid, DateTime datahorainicio, DateTime datahorafim)
+    public Sessao(int id, int filmeid, int salaid, DateTime datahorainicio, DateTime datahorafim, int lotacaoatual, bool _lotado)
     {
         Id = id;
         FilmeId = filmeid;
         SalaId = salaid;
         DataHoraInicio = datahorainicio;
         DataHoraFim = datahorafim;
+        LotacaoAtual = lotacaoatual;
+        _Lotado = _lotado;
     }
 
 

@@ -4,12 +4,18 @@ using model;
 
 public class SessaoController
 {
-    private List<Sessao> sessoes;
-    private FilmeController _filmecontroller;
 
-    public SessaoController(FilmeController filmecontroller)
+    SalaController salacontroller;
+    public List<Sessao> sessoes;
+    private FilmeController _filmecontroller;
+    private SalaController _salacontroller;
+    
+    
+
+    public SessaoController(FilmeController filmecontroller, SalaController salacontroller)
     {
         _filmecontroller = filmecontroller;
+        _salacontroller = salacontroller;
         sessoes = new List<Sessao> { };
 
         sessoes = new List<Sessao> { };
@@ -47,7 +53,7 @@ public class SessaoController
         else
         {
             int id = sessoes.Count > 0 ? sessoes.Max(s => s.Id) + 1 : 1;
-            Sessao novaSessao = new Sessao(id, idfilme, idsala, datainicio, datafim);
+            Sessao novaSessao = new Sessao(id, idfilme, idsala, datainicio, datafim, 0, false);
             sessoes.Add(novaSessao);
             Console.WriteLine(novaSessao.ToString());
             Console.WriteLine("Sessão criada com sucesso!");
@@ -58,5 +64,32 @@ public class SessaoController
 
 
 
+    }
+
+    public void Lotacao(int salaid, int idsessao)
+    {
+        foreach (var sala in salacontroller.salas)
+        {
+            if (sala.Id == salaid)
+            {
+                foreach (var sessao in sessoes)
+                {
+                    if(sessao.Id == idsessao)
+                    {
+                if (sessao.LotacaoAtual < sala.CapacidadeTotal)
+                {
+                    sessao.LotacaoAtual++;
+                    Console.WriteLine("Ingresso vendido! Lotação atual: " + sessao.LotacaoAtual);
+                }
+                else
+                {
+                    sessao._Lotado = true;
+                    Console.WriteLine("Não é possível vender o ingresso. A sala está lotada.");
+                }
+                    }
+                }
+                
+            }
+        }
     }
 }

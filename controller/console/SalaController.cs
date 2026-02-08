@@ -3,7 +3,8 @@ using model;
 
 public class SalaController
 {
-    private List<Sala> salas;
+    public List<Sala> salas;
+    
 
 
     public SalaController()
@@ -37,6 +38,22 @@ public class SalaController
                 Console.WriteLine(sala.ToString());
             }
         }
+    }
+
+    public void CadastrarSala()
+    {
+        Console.Write("Digite o nome da sala: ");
+        string nome = Console.ReadLine() ?? "";
+
+        Console.Write("Digite a capacidade da sala: ");
+        int capacidade = int.Parse(Console.ReadLine() ?? "0");
+
+        int novoId = salas.Count > 0 ? salas.Max(s => s.Id) + 1 : 1;
+
+        Sala novaSala = new Sala(novoId, nome, capacidade);
+        salas.Add(novaSala);
+
+        Console.WriteLine("Sala cadastrada com sucesso!");
     }
 
 }

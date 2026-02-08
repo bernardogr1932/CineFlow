@@ -6,6 +6,13 @@ public class Sala
     public string Nome { get; set; }
     public int CapacidadeTotal { get; set; }
 
+   
+    
+
+    
+
+    
+
 
 
     public Sala()
@@ -13,6 +20,7 @@ public class Sala
         Id = 0;
         Nome = "";
         CapacidadeTotal = 0;
+        
     }
 
 
@@ -21,6 +29,8 @@ public class Sala
         Id = id;
         Nome = nome;
         CapacidadeTotal = capacidadetotal;
+        
+        
     }
 
 

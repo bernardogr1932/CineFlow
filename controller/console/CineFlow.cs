@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using CineFlow.model;
+using Cineflow.controller.console;
 
 namespace CineFlow.controller.console;
 
@@ -14,21 +15,26 @@ class CineFlow
     public bool _executando;
     private SessaoController sessaocontroller;
     private FilmeController filmecontroller;
+    private IngressoController ingressocontroller;
+    private SalaController salacontroller;
 
     public CineFlow()
     {
-        
+
         filmecontroller = new FilmeController();
-        sessaocontroller = new SessaoController(filmecontroller);
+        salacontroller = new SalaController();
+        sessaocontroller = new SessaoController(filmecontroller, salacontroller);
+        ingressocontroller = new IngressoController(sessaocontroller, salacontroller);
+
     }
 
     public enum OpcaoMenu
     {
         Sair = 0,
         CadastrarFilme = 1,
-        GerenciarSalas = 2,
+        CadastrarSala = 2,
         CriarSessao = 3,
-        GerenciarIngressos = 4
+        CriarIngresso = 4
 
 
     }
@@ -51,9 +57,9 @@ class CineFlow
         Console.WriteLine("=== CineFlow - Sistema de Gerenciamento de Cinema ===");
         Console.WriteLine($"{(int)OpcaoMenu.Sair}) Sair");
         Console.WriteLine($"{(int)OpcaoMenu.CadastrarFilme}) Cadastrar Filmes");
-        Console.WriteLine($"{(int)OpcaoMenu.GerenciarSalas}) Gerenciar Salas");
+        Console.WriteLine($"{(int)OpcaoMenu.CadastrarSala}) Cadastrar Salas");
         Console.WriteLine($"{(int)OpcaoMenu.CriarSessao}) Criar Sessão");
-        Console.WriteLine($"{(int)OpcaoMenu.GerenciarIngressos}) Gerenciar Ingressos");
+        Console.WriteLine($"{(int)OpcaoMenu.CriarIngresso}) Criar Ingresso");
         Console.Write("Escolha uma opção: ");
     }
 
@@ -78,16 +84,15 @@ class CineFlow
                 FilmeController filmecontroller = new FilmeController();
                 filmecontroller.CadastrarFilme();
                 break;
-            case OpcaoMenu.GerenciarSalas:
-                Console.WriteLine("Gerenciando salas...");
-                // Lógica para gerenciar salas
+            case OpcaoMenu.CadastrarSala:
+                salacontroller.CadastrarSala();
                 break;
             case OpcaoMenu.CriarSessao:
                 sessaocontroller.CriarSessao();
                 break;
-            case OpcaoMenu.GerenciarIngressos:
-                Console.WriteLine("Gerenciando ingressos...");
-                // Lógica para gerenciar ingressos
+            case OpcaoMenu.CriarIngresso:
+
+                ingressocontroller.CriarIngresso();
                 break;
             default:
                 Console.WriteLine("Opção inválida. Tente novamente.");
