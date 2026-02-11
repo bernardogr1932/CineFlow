@@ -10,6 +10,7 @@ public class Ingresso
 
 
 
+
     public Ingresso()
     {
         Id = 0;
@@ -25,5 +26,10 @@ public class Ingresso
         SessaoId = sessaoid;
         LugarMarcado = lugarmarcado;
         Preco = preco;
+    }
+
+    public virtual string ToString()
+    {
+        return $"ID: {Id}, Sessão ID: {SessaoId}, Lugar: {LugarMarcado}, Preço: R${Preco}";
     }
 }

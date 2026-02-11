@@ -21,6 +21,7 @@ public class Sessao
         DataHoraFim = DateTime.MinValue;
         LotacaoAtual = 0;
         _Lotado = false;
+
     }
 
     public Sessao(int id, int filmeid, int salaid, DateTime datahorainicio, DateTime datahorafim, int lotacaoatual, bool _lotado)
@@ -32,10 +33,11 @@ public class Sessao
         DataHoraFim = datahorafim;
         LotacaoAtual = lotacaoatual;
         _Lotado = _lotado;
+
     }
 
 
-public virtual string ToString()
+    public virtual string ToString()
     {
         return $"ID: {Id}, Filme ID: {FilmeId}, Sala ID: {SalaId}, Início: {DataHoraInicio}, Fim: {DataHoraFim}";
     }
