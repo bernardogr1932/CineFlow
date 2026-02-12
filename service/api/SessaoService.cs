@@ -3,6 +3,7 @@ using CineFlowAPI.Data;
 using Microsoft.EntityFrameworkCore;
 namespace CineFlowAPI.service.api;
 
+
 using CineFlowAPI.DTOs;
 
 public class SessaoService
@@ -81,5 +82,17 @@ public class SessaoService
         _context.SaveChanges();
     }
 
+    public List<Sessao> FilmesEmCartaz()
+{
+    DateTime agora = DateTime.Now;
+    DateTime dataLimite = agora.AddDays(7);
+
+    return _context.Sessoes
+        .Include(s => s.Filme)   // para ter os dados do filme
+        .Include(s => s.Sala)    // opcional, se precisar
+        .Where(s => s.DataHoraInicio >= agora && s.DataHoraInicio <= dataLimite)
+        .OrderBy(s => s.DataHoraInicio)
+        .ToList();
+}
 
 }

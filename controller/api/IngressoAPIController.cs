@@ -30,7 +30,7 @@ public class IngressoAPIController : ControllerBase
             LugarMarcado = i.LugarMarcado,
             Preco = i.Preco
         }).ToList();
-        return Ok(ingressos);
+        return Ok(response);
     }
 
     [HttpPost]

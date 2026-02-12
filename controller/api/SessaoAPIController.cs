@@ -98,6 +98,25 @@ public class SessaoAPIController : ControllerBase
         }
     }
 
+    [HttpGet("em-cartaz")]
+    public IActionResult GetFilmesEmCartaz()
+    {
+        var sessoes = _sessaoservice.FilmesEmCartaz();
+        if (!sessoes.Any())
+            return NotFound("Nenhuma sessão nos próximos 7 dias.");
 
+
+        var response = sessoes.Select(s => new SessaoResponseDto
+        {
+            Id = s.Id,
+            FilmeId = s.FilmeId,
+            SalaId = s.SalaId,
+            DataHoraInicio = s.DataHoraInicio,
+            DataHoraFim = s.DataHoraFim,
+            LotacaoAtual = s.LotacaoAtual
+        }).ToList();
+
+        return Ok(response);
+    }
 
 }
