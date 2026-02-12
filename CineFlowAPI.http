@@ -1,0 +1,6 @@
+@CineFlowAPI_HostAddress = http://localhost:5102
+
+GET {{CineFlowAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
