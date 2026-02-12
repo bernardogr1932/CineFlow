@@ -2,6 +2,7 @@ using CineFlowAPI.service.api;
 using Microsoft.EntityFrameworkCore;
 using CineFlowAPI.Data;
 
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(

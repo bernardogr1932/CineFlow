@@ -97,4 +97,7 @@ public class SessaoAPIController : ControllerBase
             return StatusCode(500, new { message = "Erro interno no servidor.", detalhes = ex.Message });
         }
     }
+
+
+
 }

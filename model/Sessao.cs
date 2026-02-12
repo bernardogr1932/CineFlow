@@ -1,6 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
+using Microsoft.OpenApi;
+using Microsoft.SqlServer.Server;
+
 
 namespace CineFlowAPI.model;
 
@@ -19,12 +22,13 @@ public class Sessao
 
     [JsonIgnore]
     public Sala Sala { get; set; }
+
     public DateTime DataHoraInicio { get; set; }
     public DateTime DataHoraFim { get; set; }
     public int LotacaoAtual { get; set; }
     public bool Lotado => LotacaoAtual >= (Sala?.CapacidadeTotal ?? 0);
 
-    
+
     public Sessao()
     {
         Id = 0;

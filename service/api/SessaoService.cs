@@ -3,6 +3,8 @@ using CineFlowAPI.Data;
 using Microsoft.EntityFrameworkCore;
 namespace CineFlowAPI.service.api;
 
+using CineFlowAPI.DTOs;
+
 public class SessaoService
 {
 
